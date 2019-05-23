@@ -7,7 +7,7 @@ Created on Thu May 16 13:31:56 2019
 import cv2
 
 #import image
-filepath ="C:/Users/Administrator/Desktop/Tensorflow+OpenCV/OpenCV/1.jpg"
+filepath ="1.jpg"
 img = cv2.imread(filepath)
 
 #transfer img into gray level
