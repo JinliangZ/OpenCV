@@ -60,4 +60,6 @@ classifier2.detection()
 cv2.imshow("Image",img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+#end
         
