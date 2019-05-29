@@ -14,9 +14,9 @@ class Classifiers:
         self.path = path
         self.color = color
         self.thickness = thickness
-   
-    def detection(self):
-       
+        
+    def detection(self,img):
+        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
         classifier = cv2.CascadeClassifier(self.path)
         faceRects = classifier.detectMultiScale(
          gray, scaleFactor=1.2, minNeighbors=3, minSize=(32, 32))
@@ -27,23 +27,19 @@ class Classifiers:
         cv2.imshow("Video", img)
   
 #detect face   
-classifier1 = Classifiers("D:\OpenCV\opencv\sources\data\haarcascades\haarcascade_frontalface_default.xml",(0,123,0),2)
-
+classifier1 = Classifiers("E:\Anaconda\pkgs\libopencv-3.4.1-h875b8b8_3\Library\etc\haarcascades\haarcascade_frontalface_default.xml",(0,123,0),2)
 #detect eyes
-classifier2 = Classifiers("D:\OpenCV\opencv\sources\data\haarcascades\haarcascade_eye_tree_eyeglasses.xml ",(100,100,255),1)
+classifier2 = Classifiers("E:\Anaconda\pkgs\libopencv-3.4.1-h875b8b8_3\Library\etc\haarcascades\haarcascade_eye_tree_eyeglasses.xml ",(100,100,255),1)
 
-#get video
-filepath ="C:/Users/Administrator/Desktop/Tensorflow+OpenCV/OpenCV/face-video-detection/1.mov"
-cv2.namedWindow("Video")
-cap = cv2.VideoCapture(filepath)
+# #get video
+cap = cv2.VideoCapture(0)
 
 #capture video frame-by-frame
-while cap.isOpened():
+while cap.isOpened() == True:
     ret,img = cap.read()
-    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #cv2.imshow("image",img)
-    classifier1.detection()   
-    classifier2.detection()
+    classifier1.detection(img)   
+    classifier2.detection(img)
     if cv2.waitKey(1) & 0xFF == ord("a"):
         break
 cap.release()
